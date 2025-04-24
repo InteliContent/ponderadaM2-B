@@ -1,4 +1,6 @@
-# Projeto Individual (UX Parte 1): Personas e User Stories
+# Projeto Individual (UX Parte 1 opcional): Personas e User Stories
+
+Esta entrega é opcional, mas altamente recomendada, para compor um projeto de maior qualidade para seu portfólio pessoal.
 
 ## Objetivo
 
@@ -8,8 +10,6 @@ Elaborar uma persona e User Stories (US) para o sistema do seu projeto individua
 
 - Preencher as seções 1 e 2 do arquivo `PI-WAD.md`
 - Inserir o link do seu repositório GitHub individual no card da AdaLove
-
-**Prazo de Entrega:** Até sexta-feira, 23h59
 
 ---
 

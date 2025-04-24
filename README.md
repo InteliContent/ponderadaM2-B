@@ -2,7 +2,7 @@
 
 ### Antes de começar: ###
 
-Verifique se as ponderadas de seu professor(a) de UX estão integradas às ponderadas de seu professor(a) de Computação. Se as ponderadas de UX forem relacionadas a este projeto individual, você deve acessar este outro enunciado aqui para realizar as ponderadas de UX e Computação: [https://github.com/InteliContent/M2/blob/main/README.md](https://github.com/InteliContent/M2/blob/main/README.md)
+Se você for da turma 16 ou 18, utilize este outro enunciado para realizar as ponderadas de UX e Computação: [https://github.com/InteliContent/M2/blob/main/README.md](https://github.com/InteliContent/M2/blob/main/README.md)
 
 ---
 

@@ -1,4 +1,11 @@
-# Projeto Individual - Módulo 2025-1B
+# Projeto Individual - Módulo 2025-1B (versão não integrada)
+
+### Antes de começar: ###
+
+Verifique se as ponderadas de seu professor(a) de UX estão integradas às ponderadas de seu professor(a) de Computação. Se as ponderadas de UX forem relacionadas a este projeto individual, você deve acessar este outro enunciado aqui para realizar as ponderadas de UX e Computação: [https://github.com/InteliContent/M2/blob/main/README.md](https://github.com/InteliContent/M2/blob/main/README.md)
+
+---
+
 Neste projeto, você será responsável por desenvolver um sistema web completo, com banco de dados, backend e frontend integrados. O objetivo é aplicar os conceitos do módulo e construir um projeto que possa ser incluído no seu portfólio profissional. Quem sabe você poderá apresentá-lo em um processo seletivo para estágio! 🚀
 
 Você deve escolher um entre os tipos de sistema abaixo para desenvolver:

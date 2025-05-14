@@ -31,34 +31,19 @@ A conexão é configurada com segurança usando variáveis de ambiente definidas
 
 **Migração** é o processo de criação ou alteração da estrutura do banco de dados (como criar tabelas).
 
-Neste projeto, a migração foi feita manualmente com um script JavaScript (`migrations/migrate.js`), que executa comandos SQL ao rodar:
+Você pode fazer a migração manualmente com um script JavaScript (`migrations/migrate.js`), que executa comandos SQL ao rodar:
 
 ```bash
 npm run migrate
 ```
 
-Essa abordagem ajuda a garantir que a estrutura do banco (ex: a tabela `tarefas`) seja criada corretamente e de forma reprodutível em qualquer ambiente.
+Ou utilziar a estrutura do mvc-boilerplate, alternato o arquivo init.sql e rodando o comando `npm run init-db`.
 
 ---
 
 ### Models
 
 Models são responsáveis por representar a estrutura dos dados da aplicação. Neste projeto, como não usamos um ORM (como Sequelize), os Models estão embutidos diretamente nos **Controllers** por meio de comandos SQL.
-
-Por exemplo, um "model implícito" de tarefa seria algo como:
-
-```sql
-CREATE TABLE tarefas (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(255),
-  descricao TEXT,
-  status VARCHAR(50),
-  created_at TIMESTAMP,
-  updated_at TIMESTAMP
-);
-```
-
-Esse modelo representa como os dados são armazenados no banco de dados.
 
 ---
 
@@ -109,29 +94,10 @@ Esses conceitos juntos formam a base de muitos sistemas web modernos, conectando
 
 ## Instruções
 
-### Etapa 1 - Criando o Banco de Dados PostgreSQL
-Crie um banco de dados chamado, por exemplo, tarefas_db utilizando uma interface gráfica como o DBeaver ou via terminal.
+### Etapa 1 - Integrando seu BD ao projeto
+Caso ainda não tenha feito, adicione o script SQL ao arquivo init.sql e exeute o comando de criação do BD `npm run init-db`.
 
-### Etapa 2 -Integrando seu BD ao projeto
-
-#### Passo 1 — Instalando Dependências
-
-Você vai precisar do **pg** para conectar-se ao PostgreSQL e também do **dotenv** para carregar variáveis de ambiente. Execute o seguinte comando para instalar as dependências:
-
-```bash
-npm install pg dotenv
-```
-
-Adicione o script de migração no seu arquivo `package.json`:
-
-```json
-"scripts": {
-  "dev": "node server.js",
-  "migrate": "node migrations/migrate.js"
-}
-```
-
-#### Passo 2 — Configurando o Banco de Dados com `pg`
+#### Configure o Banco de Dados 
 
 Crie um arquivo `.env` para armazenar as variáveis de conexão com o banco de dados:
 
@@ -146,7 +112,7 @@ DB_NAME=nome_do_banco
 Em seguida, crie um arquivo de configuração `config/database.js` para carregar essas variáveis e estabelecer a conexão:
 
 ```javascript
-// config/database.js
+// config/db.js
 require('dotenv').config();
 
 const { Pool } = require('pg');
@@ -163,47 +129,8 @@ const pool = new Pool({
 module.exports = pool;
 ```
 
-#### Passo 3 — Criando a Tabela (Migração Manual)
 
-Agora, crie o arquivo `migrations/migrate.js` para gerar a tabela de **tarefas**.
-
-```javascript
-// migrations/migrate.js
-const pool = require('../config/database');
-
-async function migrate() {
-  const query = `
-    CREATE TABLE IF NOT EXISTS tarefas (
-      id SERIAL PRIMARY KEY,
-      nome VARCHAR(255) NOT NULL,
-      descricao TEXT,
-      status VARCHAR(50) DEFAULT 'pendente',
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    );
-  `;
-
-  try {
-    await pool.query(query);
-    console.log('Tabela "tarefas" criada com sucesso.');
-  } catch (err) {
-    console.error('Erro ao criar a tabela:', err.message);
-  } finally {
-    pool.end();
-  }
-}
-
-migrate();
-```
-
-Agora, para rodar a migração, basta executar:
-
-```bash
-npm run migrate
-```
-
-
-### Etapa 3- Implementando Controllers e Rotas para alteração do BD
+### Etapa 2- Implementando Controllers e Rotas para alteração do BD
 
 #### Passo 1
 
@@ -341,7 +268,7 @@ E testar os endpoints do CRUD (usando o Postman ou outra ferramenta similar):
 3. **Editar uma tarefa** (PUT `/api/tarefas/:id`)
 4. **Excluir uma tarefa** (DELETE `/api/tarefas/:id`)
 
-### Etapa 4 — Arquitetura MVC
+### Etapa 3 — Arquitetura MVC
 A Arquitetura MVC (Model-View-Controller) é uma abordagem que organiza a aplicação em três componentes principais:
 
 - `Model`: Representa a estrutura dos dados e interage diretamente com o banco de dados. No seu projeto, a modelagem dos dados é feita por meio de comandos SQL, sem o uso de ORM, onde a estrutura das tabelas é criada e gerenciada diretamente com SQL.
@@ -368,20 +295,19 @@ Para criar o diagrama de arquitetura MVC (Model-View-Controller), siga estas eta
 
 - Relacionamentos: Use setas para conectar os componentes, demonstrando como os dados fluem entre o Model, Controller e View.
 
-Use este exemplo como referência:
+Use este exemplo como referência: https://github.com/kterra/Inteli-2024-1B/blob/main/materiais/ponderada-2/exemplo-arq-v2.jpg
 
-### Etapa 5 — Atulizando a documentação
+### Etapa 4 — Atulizando a documentação
 
 Adicione a documentação sobre como configurar o banco de dados, como rodar as migrações e como testar as APIs. 
 
 ---
 
 ##  Requisitos Mínimos da Entrega
-- Criação do banco de dados PostgreSQL
-- Conexão com o Banco de Dados 
+- Criação do banco de dados PostgreSQL e conexão com o Banco de Dados
+- Migração funcional
 - Implementação de Models
 - Implementação de Controllers
 - Rotas Funcionando
-- Migração Funcional
 - Arquitetura MVC Completa
 - Documentação Completa
